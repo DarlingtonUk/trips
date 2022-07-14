@@ -33,12 +33,6 @@ $(document).ready(function () {
   componentRestrictions: {
    country: "MU"
   }
-
-  autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchDestination)), {
-   types: ['geocode'],
-   componentRestrictions: {
-    country: "MU"
-   }
  });
 
  google.maps.event.addListener(autocomplete, 'place_changed', function () {
