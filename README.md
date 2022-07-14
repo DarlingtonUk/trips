@@ -1,2 +1,2 @@
 # trips
-Request Rides all around Mauritius 🇲🇺
+Request Rides All Around Mauritius 🇲🇺
