@@ -17,7 +17,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyBdOjGKJOYESA8FfyWsFMcH_jey7KXO0zY"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCSdK5ajXLW9dgmpP92vp4FaR7iETdr8pQ"></script>
 
 
 
@@ -27,17 +27,48 @@ var searchPickup = 'search_pickup';
 var searchDestination = "search_destination";
 
 $(document).ready(function () {
- var autocomplete;
- autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchPickup)), {
+ var autocomplete, autocomplete2;
+
+ const options = {
   types: ['geocode'],
   componentRestrictions: {
    country: "MU"
   }
- });
+ }
+
+ autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchPickup)), options);
+
+ autocomplete2 = new google.maps.places.Autocomplete((document.getElementById(searchDestination)), options);
 
  google.maps.event.addListener(autocomplete, 'place_changed', function () {
   var near_place = autocomplete.getPlace();
  });
+
+ $('#submit').on('click', function(){
+   let name = $('#name').val(),
+       from = $('#'+searchPickup).val(),
+       to = $('#'+searchDestination).val()
+
+   if(from == ''){
+     alert('Enter your location')
+     return
+   }
+
+   if(to == ''){
+     alert('Enter your destination')
+     return
+   }
+
+    if(name == ''){
+      alert('Enter your name')
+      return
+    }
+
+    window.open('https://api.whatsapp.com/send/?phone=+23057930898&text=Hi!+My+ name+is+'+name+'.+I+have+a+trip+to+make+from+'+from+'+to+'+to+'&app_absent=0')
+
+
+
+ })
 });
 </script>
 
@@ -50,22 +81,22 @@ $(document).ready(function () {
       <h4>Get Affordable Rides Around Mauritius 🇲🇺</h4>
       <form method="post">
         <div class="txt_field">
-          <input type="text" required>
+          <input type="text" required id="name">
           <span></span>
           <label>Name</label>
         </div>
         <div class="txt_field">
-          <input type="text" required id="search_pickup" placeholder="📍Pickup Location">
+          <input type="text" required id="search_pickup" placeholder="">
           <span></span>
-<!--           <label>📍Pickup Location</label> -->
+          <label>📍Pickup Location</label>
         </div>
         <div class="txt_field">
-          <input type="text" required id="search_destination">
+          <input type="text" required id="search_destination" placeholder="">
           <span></span>
           <label>📍Destination</label>
         </div>
         <!-- <div class="pass">Forgot Password?</div> -->
-        <input type="submit" value="Request Ride">
+        <input type="submit" value="Request Ride" id="submit">
         <!-- <div class="signup_link">
           Not a member? <a href="#">Signup</a>
         </div> -->
