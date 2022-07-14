@@ -14,7 +14,33 @@
     <meta property="og:url" content='https://darlingtonuk.github.io/trips/'/>
     <meta property="og:image:width" content='1200' />
     <meta property="og:image:height" content='627' />
-    <meta property="og:type" content='website'/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCSdK5ajXLW9dgmpP92vp4FaR7iETdr8pQ"></script>
+
+
+
+<script>
+var searchInput = 'search_input';
+
+$(document).ready(function () {
+ var autocomplete;
+ autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+  types: ['geocode'],
+  /*componentRestrictions: {
+   country: "USA"
+  }*/
+ });
+
+ google.maps.event.addListener(autocomplete, 'place_changed', function () {
+  var near_place = autocomplete.getPlace();
+ });
+});
+</script>
+
+
+
   </head>
   <body>
     <div class="center">
@@ -27,12 +53,12 @@
           <label>Name</label>
         </div>
         <div class="txt_field">
-          <input type="text" required>
+          <input type="text" required id="search_input">
           <span></span>
-          <label>📍Pickup Location</label>
+          <!-- <label>📍Pickup Location</label> -->
         </div>
         <div class="txt_field">
-          <input type="text" required>
+          <input type="text" required id="search_destination">
           <span></span>
           <label>📍Destination</label>
         </div>
