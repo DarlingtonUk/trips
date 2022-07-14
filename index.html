@@ -18,20 +18,27 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyBdOjGKJOYESA8FfyWsFMcH_jey7KXO0zY"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdOjGKJOYESA8FfyWsFMcH_jey7KXO0zY&callback=myMap"></script>
+
 
 
 
 <script>
-var searchInput = 'search_input';
+var searchPickup = 'search_pickup';
+var searchDestination = "search_destination";
 
 $(document).ready(function () {
  var autocomplete;
- autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+ autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchPickup)), {
   types: ['geocode'],
-  /*componentRestrictions: {
-   country: "USA"
-  }*/
+  componentRestrictions: {
+   country: "MU"
+  }
+
+  autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchDestination)), {
+   types: ['geocode'],
+   componentRestrictions: {
+    country: "MU"
+   }
  });
 
  google.maps.event.addListener(autocomplete, 'place_changed', function () {
@@ -54,9 +61,9 @@ $(document).ready(function () {
           <label>Name</label>
         </div>
         <div class="txt_field">
-          <input type="text" required id="search_input">
+          <input type="text" required id="search_pickup" placeholder="">
           <span></span>
-          <!-- <label>📍Pickup Location</label> -->
+          <label>📍Pickup Location</label>
         </div>
         <div class="txt_field">
           <input type="text" required id="search_destination">
