@@ -30,7 +30,7 @@ $(document).ready(function () {
  var autocomplete, autocomplete2;
 
  const options = {
-  types: ['geocode'],
+  // types: ['geocode'],
   componentRestrictions: {
    country: "MU"
   }
@@ -44,7 +44,10 @@ $(document).ready(function () {
   var near_place = autocomplete.getPlace();
  });
 
- $('#submit').on('click', function(){
+ $('#submit').on('click', function(e){
+
+   e.preventDefault()
+   
    let name = $('#name').val(),
        from = $('#'+searchPickup).val(),
        to = $('#'+searchDestination).val()
